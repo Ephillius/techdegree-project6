@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	const startButton = document.querySelector('.btn__reset');
 	const qwerty = document.getElementById('qwerty');
 	const phrase = document.getElementById('phrase');
+	let lettersFound = 0;
 	const misses = 0;
 	const phrasesArray = [
 							'Rain on Your Parade',
@@ -22,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	function getRandomPhraseAsArray(array) {
     	const randomPhrase = array[Math.floor(Math.random()*array.length)];
-    	const newPhrase = randomPhrase.split('');
+    	const newPhrase = randomPhrase.toUpperCase().split('');
     	console.log(newPhrase);
     	return newPhrase;
 	}
@@ -36,6 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
     		const letter = document.createTextNode(array[i]);
     		if (array[i] !== ' ') {
     			newLi.className = 'letter';
+    		} else {
+    			newLi.className = 'space';
     		}
     		newLi.appendChild(letter); 
     		list.appendChild(newLi);
@@ -43,15 +46,21 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 
 	addPhraseToDisplay(newPhrase);
+
 	function checkLetter(button) {
 		const letters = document.getElementsByClassName('letter');
-		let match;
+		let match = null;
 		for (let i = 0; i < letters.length; i++) {
 			let show = letters[i].textContent.toLowerCase();
 			if (show === button.textContent.toLowerCase()) {
-				console.log("match");
-				letters[i].className += 'show';
-				match = show;
+				console.log('match');
+				letters[i].className += ' show';
+				match = true;
+				lettersFound += 1;
+				console.log(lettersFound);
+			}
+			if() {
+
 			}
 		}
 		return match;
@@ -60,6 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	qwerty.addEventListener('click', (e) => {
 		if(e.target.tagName == 'BUTTON') {
 			e.target.className = 'chosen';
+			e.target.setAttribute('disabled', 'disabled');
 			checkLetter(e.target);
 		}
 	});
