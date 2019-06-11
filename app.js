@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	const overlay = document.getElementById('overlay');
 	const startButton = document.querySelector('.btn__reset');
 	const qwerty = document.getElementById('qwerty');
+	const button = qwerty.children;
 	const phrase = document.getElementById('phrase');
 	const misses = 0;
 	const phrasesArray = [
@@ -44,11 +45,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	addPhraseToDisplay(newPhrase);
 
-	function checkLetter(target) {
-		for (let i = 0; i < newPhrase.length; i++) {
-			if (target == newPhrase[i]) {
-
-			}
+	function checkLetter(event) {
+		const letters = document.getElementsByClassName('letter');
+		for (let i = 0; i < letter.length; i++) {
+			if (event.target.textContent === letter[i].textContent) {
+				const li = document.querySelector('ul li');
+				li.className = 'show';
+				const letter = letter[i];
+				return letter[i];
+			} else {
+    			return null;
+    		}
 		}
 	}
+
+	button.addEventListener('click', () => {
+		
+	});
 });
